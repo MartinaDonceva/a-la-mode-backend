@@ -28,10 +28,10 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                    TextInput::make('name')->required(),
-                    TextInput::make('price')->required()->numeric(),
-                    TextInput::make('description')->required(),
-                    TextInput::make('image')->required(),
+                    TextInput::make('name')->required()->label('Наслов'),
+                    TextInput::make('price')->required()->numeric()->label('Цена'),
+                    TextInput::make('description')->required()->label('Опис'),
+                    TextInput::make('image')->required()->label('Слика'),
             ]);
     }
 
@@ -42,11 +42,11 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->searchable(),
-                TextColumn::make('name')->limit(20)->searchable(),
-                TextColumn::make('price')->sortable(),
-                TextColumn::make('description')->limit(100),
-                TextColumn::make('image')
+                TextColumn::make('id')->sortable()->searchable()->label('Индекс'),
+                TextColumn::make('name')->limit(20)->searchable()->label('Наслов'),
+                TextColumn::make('price')->sortable()->label('Цена'),
+                TextColumn::make('description')->limit(100)->label('Опис'),
+                TextColumn::make('image')->label('Слика')
             ])
             ->filters([
                 //
