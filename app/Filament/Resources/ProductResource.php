@@ -13,6 +13,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Widgets\StatsOverviewWidget\Card;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,7 +32,7 @@ class ProductResource extends Resource
                     TextInput::make('name')->required()->label('Наслов'),
                     TextInput::make('price')->required()->numeric()->label('Цена'),
                     TextInput::make('description')->required()->label('Опис'),
-                    TextInput::make('image')->required()->label('Слика'),
+                    FileUpload::make('image')->image()->required()->label('Слика')
             ]);
     }
 
@@ -46,7 +47,7 @@ class ProductResource extends Resource
                 TextColumn::make('name')->limit(20)->searchable()->label('Наслов'),
                 TextColumn::make('price')->sortable()->label('Цена'),
                 TextColumn::make('description')->limit(100)->label('Опис'),
-                TextColumn::make('image')->label('Слика')
+                ImageColumn::make('image')->label('Слика')
             ])
             ->filters([
                 //
