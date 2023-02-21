@@ -18,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Widgets\StatsOverviewWidget\Card;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\TemporaryUploadedFile;
 
 class ProductResource extends Resource
 {
@@ -29,10 +30,12 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                    TextInput::make('name')->required()->label('Наслов'),
-                    TextInput::make('price')->required()->numeric()->label('Цена'),
-                    TextInput::make('description')->required()->label('Опис'),
-                    FileUpload::make('image')->image()->required()->label('Слика')
+                TextInput::make('name')->required()->label('Наслов'),
+                TextInput::make('price')->required()->numeric()->label('Цена'),
+                TextInput::make('description')->required()->label('Опис'),
+                FileUpload::make('image')
+                    ->image()
+                    ->label("Слика")
             ]);
     }
 
@@ -47,7 +50,7 @@ class ProductResource extends Resource
                 TextColumn::make('name')->limit(20)->searchable()->label('Наслов'),
                 TextColumn::make('price')->sortable()->label('Цена'),
                 TextColumn::make('description')->limit(100)->label('Опис'),
-                ImageColumn::make('image')->label('Слика')
+                ImageColumn::make('image')->label('Слика'),
             ])
             ->filters([
                 //
