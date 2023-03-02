@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientControllerAPI;
 use App\Http\Controllers\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::apiResource('products', Products::class)->only('index', 'show');
+
+Route::resource('clients', ClientControllerAPI::class)->only('store');
