@@ -15,4 +15,11 @@ class Products extends Controller
 
         return JsonResource::collection($products);
     }
+
+    public function show(Product $product): JsonResource
+    {
+        $product = Product::query()->where('id', $product->id)->first();
+
+        return JsonResource::make($product);
+    }
 }
